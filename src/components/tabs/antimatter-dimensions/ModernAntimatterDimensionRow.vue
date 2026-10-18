@@ -39,6 +39,11 @@ export default {
     name() {
       return `${AntimatterDimension(this.tier).shortDisplayName} Antimatter Dimension`;
     },
+    // CHANGED: converts the percentage growth into an absolute gain per second.
+    // rateOfChange is the % shown in-game (100 = +100%/s), so gain = amount * % / 100.
+    absoluteRate() {
+      return this.amount.times(this.rateOfChange).dividedBy(100);
+    },
     costDisplay() {
       return this.buyUntil10 ? format(this.until10Cost) : format(this.singleCost);
     },
@@ -141,7 +146,7 @@ export default {
       :name="name"
       :multiplier-text="formatX(multiplier, 2, 2)"
       :amount-text="amountDisplay"
-      :rate="rateOfChange"
+      :rate="absoluteRate"
     />
     <div class="l-dim-row-multi-button-container c-modern-dim-tooltip-container">
       <div class="c-modern-dim-purchase-count-tooltip">

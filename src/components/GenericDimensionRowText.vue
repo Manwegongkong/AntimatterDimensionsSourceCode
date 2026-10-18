@@ -29,9 +29,10 @@ export default {
     };
   },
   computed: {
+    // CHANGED: shows absolute gain per second instead of a percentage
     rateText() {
       return this.rate.neq(0)
-        ? ` (+${format(this.rate, 2, 2)}%/s)`
+        ? ` (+${format(this.rate, 2, 2)}/s)`
         : "";
     },
     showPercentage() {
